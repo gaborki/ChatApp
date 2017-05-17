@@ -1,8 +1,8 @@
 package com.greenfox.chatapp.Controller;
 
-/**
- * Created by Gabor on 17/05/2017.
- */
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class LogController {
 
 }
