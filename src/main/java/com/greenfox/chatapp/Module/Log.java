@@ -1,14 +1,11 @@
 package com.greenfox.chatapp.Module;
 
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.SchemaOutputResolver;
 
 @Entity
 public class Log {
@@ -26,22 +23,26 @@ public class Log {
     this.method = "method";
     this.path = "path";
     this.timestamp = getTime();
-    this.logLevel = "INFO";
-    this.requestData = "nothing";
+    this.logLevel = "no level";
+    this.requestData = "no parameters";
     printLog();
   }
 
-  public Log(String endpoint, String method){
+  public Log(String endpoint, String method, String loglevel){
     this.method = method;
     this.path = endpoint;
     this.timestamp = getTime();
-    this.logLevel = "INFO";
-    this.requestData = "nothing";
+    this.logLevel = loglevel;
+    this.requestData = "no parameters";
     printLog();
   }
 
   public void printLog(){
-    System.out.println(this.timestamp);
+    if (this.logLevel != null && logLevel.equals("INFO")){
+      System.out.println(this.timestamp + " " + this.logLevel + " " + this.method + " " + this.path + " " + this.requestData);
+    } else {
+      System.out.println("This is fucked up!");
+    }
   }
 
   public String getTime(){
