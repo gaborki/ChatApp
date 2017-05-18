@@ -28,7 +28,7 @@ public class Log {
     printLog();
   }
 
-  public Log(String endpoint, String method, String loglevel){
+  public Log(String endpoint, String method, String loglevel, String requestData){
     this.method = method;
     this.path = endpoint;
     this.timestamp = getTime();

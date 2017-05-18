@@ -5,21 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
 @Table(name = "AppUser")
-public class User {
+public class AppUser {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
   private String username;
 
-  public User(){
-  }
-
-  public User(String name){
-    this.username = name;
+  public AppUser(){
   }
 
   public int getId() {
@@ -36,5 +34,10 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  @Override
+  public String toString(){
+    return this.username;
   }
 }

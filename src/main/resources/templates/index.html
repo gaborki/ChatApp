@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>Chat Program</title>
 </head>
 <body>
   <h1>Peer to Peer Chat Program</h1>
+  <form action="/sendmessage" th:object="${appUser}">
+    Username:
+    <input type="text" name="UserName" th:value="${appUser.getUsername()}"/>
+    <input type="submit" value="Update"/>
+  </form>
+  <br/>
+  <form action="/sendMessage">
+    Message to send:
+    <textarea type="text" name="message" rows="8" cols="40">
+      Enter your message</textarea>
+    <input type="submit" value="Send"/>
+  </form>
 </body>
 </html>

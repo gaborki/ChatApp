@@ -1,12 +1,15 @@
 package com.greenfox.chatapp.Controller;
 
+import com.greenfox.chatapp.Module.AppUser;
 import com.greenfox.chatapp.Module.Log;
-import com.greenfox.chatapp.Module.User;
+import com.greenfox.chatapp.Module.MessageToSend;
 import com.greenfox.chatapp.Repository.LogRepo;
+import com.greenfox.chatapp.Repository.MessageRepo;
 import com.greenfox.chatapp.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,25 +26,47 @@ public class MainController {
   LogRepo logRepo;
   @Autowired
   UserRepo userRepo;
+  @Autowired
+  MessageRepo messageRepo;
+  @Autowired
+  AppUser appUser;
 
   @RequestMapping(value = "/")
-  public String indexPage(){
-
-    logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL));
-    return "index";
+  public String indexPage(Model model) {
+    if (appUser.getUsername() == null) {
+      logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
+      return "redirect:/register";
+    } else {
+      model.addAttribute(appUser);
+      logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
+      return "index";
+    }
   }
 
   @RequestMapping(value = "/register")
-  public String registerPage(){
-    logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL));
+  public String registerPage() {
+    logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, "no parameter"));
     return "register";
   }
 
-
-  @PostMapping("/adduser")
-  public String addUser(@RequestParam String addUserName, Model model){
-    userRepo.save(new User(addUserName));
-    return "redirect:/";
+  @GetMapping("/adduser")
+  public String addUser(@RequestParam("addUserName") String addUserName) {
+    logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, addUserName));
+    System.out.println(userRepo.findByUsername(addUserName));
+    if (addUserName.equals("")) {
+      return "error";
+    } else {
+      appUser.setUsername(addUserName);
+      appUser.setId(1);
+      userRepo.save(appUser);
+      return "redirect:/";
+    }
   }
 
+  @PostMapping("/sendmessage")
+  public String sendMessage(@RequestParam("message") String message){
+    logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, message));
+    messageRepo.save(new MessageToSend(appUser.getUsername(), message));
+    return "redirect:/";
+  }
 }
