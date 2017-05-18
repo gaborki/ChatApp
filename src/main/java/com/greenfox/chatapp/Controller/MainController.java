@@ -52,6 +52,7 @@ public class MainController {
 
   @GetMapping("/adduser")
   public String addUser(@RequestParam("addUserName") String addUserName) {
+    System.out.println(addUserName);
     logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, addUserName));
     if (addUserName.equals("")) {
       return "error";

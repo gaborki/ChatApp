@@ -8,7 +8,7 @@
   <h1>Peer to Peer Chat Program</h1>
   <form action="/adduser" th:object="${appUser}">
     Username:
-    <input type="text" name="UserName" th:value="${appUser.getUsername()}"/>
+    <input type="text" name="addUserName" th:value="${appUser.getUsername()}"/>
     <input type="submit" value="Update"/>
   </form>
   <br/>
