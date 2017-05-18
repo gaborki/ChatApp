@@ -1,24 +1,28 @@
 package com.greenfox.chatapp.Module;
 
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class MessageToSend {
+public class Message {
 
   @Id
   private long id;
   private String userName;
   private String text;
+  private Timestamp timestamp;
 
-  public MessageToSend() {
+  public Message() {
     this.id = (long)(Math.random()*1000000 + 8999999);
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-  public MessageToSend(String userName, String text) {
+  public Message(String userName, String text) {
     this.id = (long)(Math.random()*1000000 + 8999999);
     this.userName = userName;
     this.text = text;
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public long getId() {
@@ -43,5 +47,17 @@ public class MessageToSend {
 
   public void setText(String text) {
     this.text = text;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
   }
 }

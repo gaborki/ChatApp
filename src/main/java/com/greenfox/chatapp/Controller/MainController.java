@@ -2,7 +2,7 @@ package com.greenfox.chatapp.Controller;
 
 import com.greenfox.chatapp.Module.AppUser;
 import com.greenfox.chatapp.Module.Log;
-import com.greenfox.chatapp.Module.MessageToSend;
+import com.greenfox.chatapp.Module.Message;
 import com.greenfox.chatapp.Repository.LogRepo;
 import com.greenfox.chatapp.Repository.MessageRepo;
 import com.greenfox.chatapp.Repository.UserRepo;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -67,7 +66,7 @@ public class MainController {
   @GetMapping("/sendmessage")
   public String sendMessage(@RequestParam("message") String message){
     logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, message));
-    messageRepo.save(new MessageToSend(appUser.getUsername(), message));
+    messageRepo.save(new Message(appUser.getUsername(), message));
     return "redirect:/";
   }
 }
