@@ -38,6 +38,7 @@ public class MainController {
       return "redirect:/register";
     } else {
       model.addAttribute(appUser);
+      model.addAttribute("messageList", messageRepo.findAll());
       logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
       return "index";
     }
@@ -52,7 +53,6 @@ public class MainController {
   @GetMapping("/adduser")
   public String addUser(@RequestParam("addUserName") String addUserName) {
     logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, addUserName));
-    System.out.println(userRepo.findByUsername(addUserName));
     if (addUserName.equals("")) {
       return "error";
     } else {
@@ -63,7 +63,7 @@ public class MainController {
     }
   }
 
-  @PostMapping("/sendmessage")
+  @GetMapping("/sendmessage")
   public String sendMessage(@RequestParam("message") String message){
     logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, message));
     messageRepo.save(new MessageToSend(appUser.getUsername(), message));
