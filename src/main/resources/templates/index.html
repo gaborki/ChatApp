@@ -12,10 +12,10 @@
       <input type="submit" value="Update"/>
     </form>
     <br/>
-    <ul th:each="message : ${messageList}">
+    <ul th:each="m : ${messageList}">
       <li>
-        <div th:text="${message.getUsername()}"/>
-        <div th:text="${message.getText()}"/>
+        <div th:text="${m.getUsername()}"/>
+        <div th:text="${m.getText()}"/>
       </li>
     </ul>
     <form action="/sendmessage">
