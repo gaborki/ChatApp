@@ -4,7 +4,7 @@ package com.greenfox.chatapp.Module;
 
 public class Status {
 
-  private String status;
+  private String status = "ok";
 
   public Status() {
   }

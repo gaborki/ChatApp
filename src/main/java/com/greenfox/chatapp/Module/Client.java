@@ -1,14 +1,14 @@
 package com.greenfox.chatapp.Module;
 
 
-public class client {
+public class Client {
 
   private String id;
 
-  public client() {
+  public Client() {
   }
 
-  public client(String id) {
+  public Client(String id) {
     this.id = id;
   }
 

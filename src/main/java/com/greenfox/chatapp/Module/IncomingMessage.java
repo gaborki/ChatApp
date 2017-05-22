@@ -3,23 +3,23 @@ package com.greenfox.chatapp.Module;
 
 public class IncomingMessage {
 
-  private client client;
+  private Client Client;
   private Message message;
 
   public IncomingMessage() {
   }
 
-  public IncomingMessage(client someone, Message text) {
-    this.client = someone;
+  public IncomingMessage(Client someone, Message text) {
+    this.Client = someone;
     this.message = text;
   }
 
-  public client getClient() {
-    return client;
+  public Client getClient() {
+    return Client;
   }
 
-  public void setClient(client client) {
-    this.client = client;
+  public void setClient(Client Client) {
+    this.Client = Client;
   }
 
   public Message getMessage() {

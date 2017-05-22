@@ -6,24 +6,27 @@
 </head>
 <body>
   <h1>Peer to Peer Chat Program</h1>
-  <form action="/adduser" th:object="${appUser}">
-    Username:
-    <input type="text" name="addUserName" th:value="${appUser.getUsername()}"/>
-    <input type="submit" value="Update"/>
-  </form>
+    <form action="/adduser" th:object="${appUser}">
+      Username:
+      <input type="text" name="addUserName" th:value="${appUser.getUsername()}"/>
+      <input type="submit" value="Update"/>
+    </form>
+    <br/>
+    <ul th:each="message : ${messageList}">
+      <li>
+        <div th:text="${message.getUsername()}"/>
+        <div th:text="${message.getText()}"/>
+      </li>
+    </ul>
+    <form action="/sendmessage">
+      Message to send:
+      <br/>
+      <textarea type="text" name="message" rows="2" cols="40">
+        Enter your message
+      </textarea>
+      <input type="submit" value="Send"/>
+    </form>
   <br/>
-  <ul th:each="message : ${messageList}">
-    <li>
-      <div th:text="${message.getUsername()}"/>
-      <div th:text="${message.getText()}"/>
-    </li>
-  </ul>
-  <form action="/sendmessage">
-    Message to send:
-    <textarea type="text" name="message" rows="8" cols="40">
-      Enter your message
-    </textarea>
-    <input type="submit" value="Send"/>
-  </form>
+  <a href="index.html">Refresh Page</a>
 </body>
 </html>
