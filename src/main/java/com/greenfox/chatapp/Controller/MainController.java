@@ -21,7 +21,7 @@ public class MainController {
 
   private final static String CHAT_APP_LOGLEVEL = "INFO";
   private final static String CHAT_APP_UNIQUE_ID = "gaborki";
-  private final static String CHAT_APP_PEER_ADDRESS = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
+  private final static String CHAT_APP_PEER_ADDRESS = "https://chat-p2p.herokuapp.com/api/message/receive";
 
 
   @Autowired
@@ -58,7 +58,6 @@ public class MainController {
 
   @GetMapping("/adduser")
   public String addUser(@RequestParam("addUserName") String addUserName) {
-    System.out.println(addUserName);
     logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, addUserName));
     if (addUserName.equals("")) {
       return "error";
@@ -71,11 +70,11 @@ public class MainController {
   }
 
   @GetMapping("/sendmessage")
-  public String sendMessage(@RequestParam("message") String message){
-    logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, message));
-    Message messageToSend = new Message(appUser.getUsername(), message);
+  public String sendMessage(@RequestParam("message") String mes){
+    logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, mes));
+    Message messageToSend = new Message(appUser.getUsername(), mes);
     messageRepo.save(messageToSend);
-    incomingMessage.setMessage(new Message(message));
+    incomingMessage.setMessage(new Message(mes));
     incomingMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
     restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, incomingMessage, IncomingMessage.class);
     return "redirect:/";
