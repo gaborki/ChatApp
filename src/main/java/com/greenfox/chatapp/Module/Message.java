@@ -9,7 +9,7 @@ public class Message {
 
   @Id
   private long id;
-  private String userName;
+  private String username;
   private String text;
   private Timestamp timestamp;
 
@@ -20,25 +20,28 @@ public class Message {
 
   public Message(String userName, String text) {
     this.id = (long)(Math.random()*1000000 + 8999999);
-    this.userName = userName;
+    this.username = userName;
     this.text = text;
     this.timestamp = new Timestamp(System.currentTimeMillis());
+  }
+
+  public Message(String userName, String text, long id, Timestamp timestamp) {
+    this.id = id;
+    this.username = userName;
+    this.text = text;
+    this.timestamp = timestamp;
   }
 
   public long getId() {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public String getUsername() {
+    return username;
   }
 
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String userName) {
+    this.username = userName;
   }
 
   public String getText() {

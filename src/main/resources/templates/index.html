@@ -14,7 +14,7 @@
   <br/>
   <ul th:each="message : ${messageList}">
     <li>
-      <div th:text="${message.getUserName()}"/>
+      <div th:text="${message.getUsername()}"/>
       <div th:text="${message.getText()}"/>
     </li>
   </ul>

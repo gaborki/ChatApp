@@ -1,24 +1,24 @@
 package com.greenfox.chatapp.Module;
 
 
-public class Received {
+public class IncomingMessage {
 
-  private Client client;
+  private client client;
   private Message message;
 
-  public Received() {
+  public IncomingMessage() {
   }
 
-  public Received(Client client, Message message) {
-    this.client = client;
-    this.message = message;
+  public IncomingMessage(client someone, Message text) {
+    this.client = someone;
+    this.message = text;
   }
 
-  public Client getClient() {
+  public client getClient() {
     return client;
   }
 
-  public void setClient(Client client) {
+  public void setClient(client client) {
     this.client = client;
   }
 
