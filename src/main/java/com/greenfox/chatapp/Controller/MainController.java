@@ -34,8 +34,8 @@ public class MainController {
   AppUser appUser;
   @Autowired
   IncomingMessage incomingMessage;
-  @Autowired
-  RestTemplate restTemplate;
+
+  RestTemplate restTemplate = new RestTemplate();
 
   @RequestMapping(value = "/")
   public String indexPage(Model model) {

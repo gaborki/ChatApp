@@ -1,6 +1,8 @@
 package com.greenfox.chatapp.Module;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class IncomingMessage {
 
   private Client Client;
