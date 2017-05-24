@@ -33,7 +33,8 @@ public class ChatRestController {
     if (!areThereMissingFields(createErrorMessage(mess)) && !mess.getClient().getId().equals("gabki")) {
       createMessageToSave(mess);
       messageRepo.save(message);
-      restTemplate.postForObject(MainController.getChatAppPeerAddress(), mess, JsonMessage.class);
+      setJsonMessageToSend(mess);
+      restTemplate.postForObject(MainController.getChatAppPeerAddress(), jsonMessage, JsonMessage.class);
     }
     return createReturnMessage(mess);
   }
