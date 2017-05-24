@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta content="text/html; charset=UTF-8"/>
+  <meta TH:HTTP-EQUIV="refresh" content="10"/>
+  <meta charset="UTF-8" > </meta>
   <title>Chat Program</title>
   <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 </head>
@@ -9,8 +10,8 @@
 <nav class="navbar navbar-inverse">
   <div class="navbar-header">
     <div class="navbar-text">P2P CAHT</div>
-    <form class="navbar-form navbar-left">
-      <input type="text" class="form-control" name="addUserName" action="/adduser" th:placeholder="${appUser.getUsername()}" id="inlineFormInput" />
+    <form class="navbar-form navbar-left" action="/adduser">
+      <input type="text"  name="addUserName" th:placeholder="${appUser.getUsername()}" id="inlineFormInput" />
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
@@ -23,7 +24,7 @@
         <form action="/sendmessage">
           <div class="form-group">
             <div class="col-lg-10">
-              <textarea class="form-control" name="message" rows="3" id="textArea" placeholder="Write message to send!"></textarea>
+              <textarea class="form-control" name="messa" rows="3" id="textArea" placeholder="Write message to send!"></textarea>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Send</button>

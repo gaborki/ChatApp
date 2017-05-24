@@ -1,16 +1,16 @@
 package com.greenfox.chatapp.Module;
 
 
-public class ErrorStatus {
+public class StatusError implements ReturnMessage {
 
   private String status = "error";
   private String message;
 
-  public ErrorStatus() {
+  public StatusError() {
   }
 
-  public ErrorStatus(String error) {
-    this.message = "Missing filed(s): " + error;
+  public StatusError(String errorMessage) {
+    this.message = errorMessage;
   }
 
   public String getStatus() {

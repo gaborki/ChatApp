@@ -21,7 +21,7 @@ public class MainController {
 
   private final static String CHAT_APP_LOGLEVEL = "INFO";
   private final static String CHAT_APP_UNIQUE_ID = "gaborki";
-  private final static String CHAT_APP_PEER_ADDRESS = "https://chat-p2p.herokuapp.com/api/message/receive";
+  private final static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
 
   public static String getChatAppLoglevel() {
     return CHAT_APP_LOGLEVEL;
@@ -81,7 +81,7 @@ public class MainController {
   }
 
   @GetMapping("/sendmessage")
-  public String sendMessage(@RequestParam("message") String mes){
+  public String sendMessage(@RequestParam("messa") String mes){
     logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, mes));
     Message messageToSend = new Message(appUser.getUsername(), mes);
     messageRepo.save(messageToSend);

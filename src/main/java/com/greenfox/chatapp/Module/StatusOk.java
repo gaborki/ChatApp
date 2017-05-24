@@ -2,14 +2,14 @@ package com.greenfox.chatapp.Module;
 
 
 
-public class Status {
+public class StatusOk implements ReturnMessage{
 
   private String status = "ok";
 
-  public Status() {
+  public StatusOk() {
   }
 
-  public Status(String status) {
+  public StatusOk(String status) {
     this.status = status;
   }
 
