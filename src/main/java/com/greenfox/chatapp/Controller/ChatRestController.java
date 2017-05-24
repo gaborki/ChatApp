@@ -42,7 +42,6 @@ public class ChatRestController {
   public String createErrorMessage(JsonMessage incomingMessage) {
     String missingfields = new String();
     Message message = incomingMessage.getMessage();
-    System.out.println("debug " + message.getUsername());
     if (message.getText() == null) {
       missingfields += " message.text";
     }
