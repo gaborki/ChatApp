@@ -10,7 +10,7 @@ public class StatusError implements ReturnMessage {
   }
 
   public StatusError(String errorMessage) {
-    this.message = errorMessage;
+    this.message = "Missing field(s) :" + errorMessage;
   }
 
   public String getStatus() {

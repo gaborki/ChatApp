@@ -42,19 +42,19 @@ public class ChatRestController {
   public String createErrorMessage(JsonMessage incomingMessage) {
     String missingfields = new String();
     if (incomingMessage.getMessage().getText() == null) {
-      missingfields += "message.text";
+      missingfields += " message.text";
     }
     if (incomingMessage.getMessage().getId() == 0) {
-      missingfields += "message.id";
+      missingfields += " message.id";
     }
     if (incomingMessage.getMessage().getUsername() == null) {
-      missingfields += "message.username";
+      missingfields += " message.username";
     }
     if (incomingMessage.getMessage().getTimestamp() == null) {
-      missingfields += "message.timestamp";
+      missingfields += " message.timestamp";
     }
     if (incomingMessage.getClient().getId() == null) {
-      missingfields += "client.id";
+      missingfields += " client.id";
     }
     return missingfields;
   }
