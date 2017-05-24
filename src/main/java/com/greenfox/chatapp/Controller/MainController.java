@@ -23,6 +23,7 @@ public class MainController {
   private final static String CHAT_APP_UNIQUE_ID = "gaborki";
   private final static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
 
+
   public static String getChatAppLoglevel() {
     return CHAT_APP_LOGLEVEL;
   }
@@ -50,6 +51,7 @@ public class MainController {
 
   @RequestMapping(value = "/")
   public String indexPage(Model model) {
+    System.out.println(messageRepo.findAll());
     if (appUser.getUsername() == null) {
       logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
       return "redirect:/register";
@@ -57,7 +59,7 @@ public class MainController {
       model.addAttribute(appUser);
       model.addAttribute("messageList", messageRepo.findAll());
       logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
-      return "index";
+      return "index2";
     }
   }
 
@@ -87,7 +89,7 @@ public class MainController {
     messageRepo.save(messageToSend);
     jsonMessage.setMessage(new Message(CHAT_APP_UNIQUE_ID, mes));
     jsonMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
-    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
+//    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
     return "redirect:/";
   }
 }

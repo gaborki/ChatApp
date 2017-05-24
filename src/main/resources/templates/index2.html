@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta TH:HTTP-EQUIV="refresh" content="10"/>
+  <meta charset="UTF-8" > </meta>
+  <title>Chat Program</title>
+  <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body style="background-color:#e8f2e8">
+<nav class="navbar navbar-inverse" style="background-color:darkslategray">
+  <div class="navbar-header">
+    <div class="navbar-text" style="color:floralwhite"><img th:src="greenfox.png" style="width: auto;height: auto"/>P2P CHAT</div>
+    <form class="navbar-form navbar-right" action="/adduser" style="color: floralwhite">
+      Username:
+      <input class="form-control" type="text"  name="addUserName" th:placeholder="${appUser.getUsername()}" id="inlineFormInput" style="border-color:lightsalmon" />
+      <button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon">Update</button>
+    </form>
+  </div>
+</nav>
+<div class="twt-wrapper">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  <div class="panel panel-info" style="border-color:lightsalmon">
+    <div class="panel-heading" style="background-color:darkslategray;color:floralwhite;border-color:lightsalmon" >
+      Message Board
+    </div>
+    <div class="panel-body">
+      <form action="/sendmessage">
+      <textarea class="form-control" name="messa" placeholder="Write your message here" rows="3" style="border-color:lightsalmon"></textarea>
+      <br />
+        <button class="btn btn-primary btn-sm pull-right" style="background-color:lightsalmon;border-color:lightsalmon">Send</button>
+      </form>
+      <div class="clearfix"></div>
+      <hr />
+      <ul class="media-list">
+        <li class="media" th:each="m : ${messageList}">
+          <div class="media-body">
+            <big><strong class="text-success" th:text="${m.getText()}"></strong></big>
+            <div><small class="text-success" th:text="|sent by: ${m.getUsername()} at ${m.getTimestamp()}"/></div>
+          </div>
+        </li>
+      </ul>
+      <span class="text-danger">237K users active</span>
+    </div>
+    <a th:href="@{/}"><button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon">Refresh</button></a>
+  </div>
+</div>
+</div>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
