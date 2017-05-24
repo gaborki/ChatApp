@@ -34,7 +34,7 @@ public class ChatRestController {
       createMessageToSave(mess);
       messageRepo.save(message);
       setJsonMessageToSend(mess);
-      restTemplate.postForObject(MainController.getChatAppPeerAddress(), jsonMessage, JsonMessage.class);
+      restTemplate.postForObject(MainController.getChatAppPeerAddress(), jsonMessage, StatusOk.class);
     }
     return createReturnMessage(mess);
   }
