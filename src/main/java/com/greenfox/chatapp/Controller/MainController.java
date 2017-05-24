@@ -21,7 +21,7 @@ public class MainController {
 
   private final static String CHAT_APP_LOGLEVEL = "INFO";
   private final static String CHAT_APP_UNIQUE_ID = "gaborki";
-  private final static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/";
+  private final static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
 
   public static String getChatAppLoglevel() {
     return CHAT_APP_LOGLEVEL;
