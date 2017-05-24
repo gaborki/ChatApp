@@ -2,7 +2,7 @@ package com.greenfox.chatapp.Controller;
 
 import com.greenfox.chatapp.Module.AppUser;
 import com.greenfox.chatapp.Module.Client;
-import com.greenfox.chatapp.Module.IncomingMessage;
+import com.greenfox.chatapp.Module.JsonMessage;
 import com.greenfox.chatapp.Module.Log;
 import com.greenfox.chatapp.Module.Message;
 import com.greenfox.chatapp.Repository.LogRepo;
@@ -23,6 +23,17 @@ public class MainController {
   private final static String CHAT_APP_UNIQUE_ID = "gaborki";
   private final static String CHAT_APP_PEER_ADDRESS = "https://chat-p2p.herokuapp.com/api/message/receive";
 
+  public static String getChatAppLoglevel() {
+    return CHAT_APP_LOGLEVEL;
+  }
+
+  public static String getChatAppUniqueId() {
+    return CHAT_APP_UNIQUE_ID;
+  }
+
+  public static String getChatAppPeerAddress() {
+    return CHAT_APP_PEER_ADDRESS;
+  }
 
   @Autowired
   LogRepo logRepo;
@@ -33,7 +44,7 @@ public class MainController {
   @Autowired
   AppUser appUser;
   @Autowired
-  IncomingMessage incomingMessage;
+  JsonMessage jsonMessage;
 
   RestTemplate restTemplate = new RestTemplate();
 
@@ -74,9 +85,9 @@ public class MainController {
     logRepo.save(new Log("/sendmessage", "GET", CHAT_APP_LOGLEVEL, mes));
     Message messageToSend = new Message(appUser.getUsername(), mes);
     messageRepo.save(messageToSend);
-    incomingMessage.setMessage(new Message(mes));
-    incomingMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
-    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, incomingMessage, IncomingMessage.class);
+    jsonMessage.setMessage(new Message(mes));
+    jsonMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
+//    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
     return "redirect:/";
   }
 }

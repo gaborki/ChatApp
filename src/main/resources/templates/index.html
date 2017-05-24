@@ -1,32 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta http-equiv=“refresh” content=“10"/>
+  <meta content="text/html; charset=UTF-8"/>
   <title>Chat Program</title>
+  <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-  <h1>Peer to Peer Chat Program</h1>
-    <form action="/adduser" th:object="${appUser}">
-      Username:
-      <input type="text" name="addUserName" th:value="${appUser.getUsername()}"/>
-      <input type="submit" value="Update"/>
-    </form>
-    <br/>
-    <ul th:each="m : ${messageList}">
-      <li>
-        <div th:text="${m.getUsername()}"/>
-        <div th:text="${m.getText()}"/>
-      </li>
-    </ul>
-    <form action="/sendmessage">
-      Message to send:
+<!--<nav class="navbar navbar-inverse">-->
+  <!--<div class="container-fluid">-->
+    <!--<div class="navbar-header">-->
+      <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"/>-->
+        <!--<span class="sr-only">Toggle navigation</span>-->
+        <!--<span class="icon-bar"></span>-->
+        <!--<span class="icon-bar"></span>-->
+        <!--<span class="icon-bar"></span>-->
+      <!--</button>-->
+      <!--<a class="navbar-brand">P2P CHAT</a>-->
+    <!--</div>-->
+    <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">-->
+      <!--<form class="navbar-form navbar-left" role="search">-->
+        <!--<div class="form-group">-->
+          <!--<input type="text" class="form-control" placeholder="Username"/>-->
+        <!--</div>-->
+        <!--<button type="submit" class="btn btn-default">Update</button>-->
+      <!--</form>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</nav>-->
+<div class="container">
+  <div class ="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    <h1>Peer to Peer Chat Program</h1>
+      <form class="form-inline">
+        <fieldset>
+          <div class="form-inline" action="/adduser" th:object="${appUser}">
+            <label for="inlineFormInput" class="col-lg-2 control-label"></label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="addUserName" id="inlineFormInput" th:placeholder="${appUser.getUsername()}"/>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        <br/>
+        <form action="/sendmessage">
+          <div class="form-group">
+            <div class="col-lg-10">
+              <textarea class="form-control" name="message" rows="3" id="textArea" placeholder="Write message to send!"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
       <br/>
-      <textarea type="text" name="message" rows="2" cols="40">
-        Enter your message
-      </textarea>
-      <input type="submit" value="Send"/>
-    </form>
-  <a th:href="@{/}">Refresh</a>
+      <div>
+      <table class="table table-striped table-hover" id="dev-table">
+        <thead>
+        <tr>
+          <th>USER</th>
+          <th>MESSAGE</th>
+        </tr>
+        </thead>
+        <tr class="info" th:each="m : ${messageList}">
+          <td th:text="${m.getUsername()}"/>
+          <td th:text="${m.getText()}"/>
+        </tr>
+      </table>
+      </div>
+        <a th:href="@{/}"><button type="submit" class="btn btn-primary">Refresh</button></a>
+    </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+  <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+  <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>
