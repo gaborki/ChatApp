@@ -16,12 +16,10 @@ public class Message {
   public Message() {
     this.id = (long)(Math.random()*1000000 + 8999999);
     this.timestamp = new Timestamp(System.currentTimeMillis());
-    this.username = "gaborki";
   }
 
   public Message(String message){
     this.id = (long)(Math.random()*1000000 + 8999999);
-    this.username = "gaborki";
     this.text = message;
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }

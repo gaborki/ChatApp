@@ -33,8 +33,7 @@ public class ChatRestController {
     if (!areThereMissingFields(createErrorMessage(mess)) && !mess.getClient().getId().equals("gabki")) {
       createMessageToSave(mess);
       messageRepo.save(message);
-      setJsonMessageToSend(mess);
-      restTemplate.postForObject(MainController.getChatAppPeerAddress(), jsonMessage, StatusOk.class);
+      restTemplate.postForObject(MainController.getChatAppPeerAddress(), mess, StatusOk.class);
     }
     return createReturnMessage(mess);
   }
@@ -42,6 +41,7 @@ public class ChatRestController {
   public String createErrorMessage(JsonMessage incomingMessage) {
     String missingfields = new String();
     Message message = incomingMessage.getMessage();
+    System.out.println(message.getUsername());
     if (message.getText() == null) {
       missingfields += " message.text";
     }
@@ -63,11 +63,6 @@ public class ChatRestController {
   public void createMessageToSave(JsonMessage mess) {
     message = new Message(mess.getMessage().getUsername(), mess.getMessage().getText(),
         mess.getMessage().getId(), mess.getMessage().getTimestamp());
-  }
-
-  public void setJsonMessageToSend(JsonMessage mess) {
-    jsonMessage.setMessage(message);
-    jsonMessage.setClient(new Client(mess.getClient().getId()));
   }
 
   public boolean areThereMissingFields(String mess) {
