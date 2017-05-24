@@ -3,9 +3,6 @@ package com.greenfox.chatapp.Module;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
 
 @Entity
 public class Message {
