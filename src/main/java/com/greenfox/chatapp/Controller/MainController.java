@@ -20,9 +20,16 @@ import org.springframework.web.client.RestTemplate;
 public class MainController {
 
   private final static String CHAT_APP_LOGLEVEL = "INFO";
-  private final static String CHAT_APP_UNIQUE_ID = "gaborki";
-  private final static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
+  private static String CHAT_APP_UNIQUE_ID = "gaborki";
+  private static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
 
+  public static void setChatAppUniqueId(String chatAppUniqueId) {
+    CHAT_APP_UNIQUE_ID = chatAppUniqueId;
+  }
+
+  public static void setChatAppPeerAddress(String chatAppPeerAddress) {
+    CHAT_APP_PEER_ADDRESS = chatAppPeerAddress;
+  }
 
   public static String getChatAppLoglevel() {
     return CHAT_APP_LOGLEVEL;
@@ -73,11 +80,12 @@ public class MainController {
   public String addUser(@RequestParam("addUserName") String addUserName) {
     logRepo.save(new Log("/register", "GET", CHAT_APP_LOGLEVEL, addUserName));
     if (addUserName.equals("")) {
-      return "error";
+      return "noUserNameGiven";
     } else {
       appUser.setUsername(addUserName);
       appUser.setId(1);
       userRepo.save(appUser);
+      setChatAppUniqueId(addUserName);
       return "redirect:/";
     }
   }

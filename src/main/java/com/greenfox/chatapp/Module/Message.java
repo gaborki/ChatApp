@@ -1,5 +1,6 @@
 package com.greenfox.chatapp.Module;
 
+import com.greenfox.chatapp.Controller.MainController;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,14 +15,13 @@ public class Message {
   private Timestamp timestamp;
 
   public Message() {
-    this.id = (long)(Math.random()*1000000 + 8999999);
-    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message(String message){
     this.id = (long)(Math.random()*1000000 + 8999999);
     this.text = message;
     this.timestamp = new Timestamp(System.currentTimeMillis());
+    this.username = MainController.getChatAppUniqueId();
   }
 
   public Message(String userName, String text) {

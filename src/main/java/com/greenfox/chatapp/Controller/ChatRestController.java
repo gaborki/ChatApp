@@ -30,7 +30,7 @@ public class ChatRestController {
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public ResponseEntity receiveMessage(@RequestBody JsonMessage mess) {
-    if (!areThereMissingFields(createErrorMessage(mess)) && !mess.getClient().getId().equals("gaborki")) {
+    if (!areThereMissingFields(createErrorMessage(mess)) && !mess.getClient().getId().equals(MainController.getChatAppUniqueId())) {
       createMessageToSave(mess);
       messageRepo.save(message);
       restTemplate.postForObject(MainController.getChatAppPeerAddress(), mess, StatusOk.class);
