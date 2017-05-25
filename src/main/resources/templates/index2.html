@@ -24,6 +24,8 @@
     <div class="panel-heading" style="background-color:darkslategray;color:floralwhite;border-color:lightsalmon" >
       Message Board
     </div>
+    <a th:href="@{/deletemessages}"><button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon;margin:15px">Clear List</button></a>
+    <a th:href="@{/}"><button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon;margin:15px">Refresh Page</button></a>
     <div class="panel-body">
       <form action="/sendmessage">
       <textarea class="form-control" name="messa" placeholder="Write your message here" rows="3" style="border-color:lightsalmon"></textarea>
@@ -33,16 +35,15 @@
       <div class="clearfix"></div>
       <hr />
       <ul class="media-list">
-        <li class="media" th:each="m : ${messageList}">
+        <li class="media" style="background-color: seashell" th:each="m : ${messageList}">
           <div class="media-body">
-            <big><strong class="text-success" th:text="${m.getText()}"></strong></big>
-            <div><small class="text-success" th:text="|sent by: ${m.getUsername()} at ${m.getTimestamp()}"/></div>
+            <big><strong class="text-success" style="margin: 5px" th:text="${m.getText()}"></strong></big>
+            <div><small class="text-success" style="margin: 5px" th:text="|sent by: ${m.getUsername()} at ${m.getTimestamp()}"/></div>
           </div>
         </li>
       </ul>
-      <span class="text-danger">237K users active</span>
+      <span class="text-danger">28.4M users active</span>
     </div>
-    <a th:href="@{/}"><button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon;margin:15px">Refresh</button></a>
   </div>
 </div>
 </div>

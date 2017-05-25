@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta TH:HTTP-EQUIV="refresh" content="10"/>
+  <meta charset="UTF-8" > </meta>
   <title>Chat Program</title>
+  <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-<h1>Enter</h1>
-<form action="/adduser">
-  Username:
-  <input type="text" name="addUserName"/>
-  <input type="submit" value="Enter"/>
-</form>
+<body style="background-color:#e8f2e8">
+<div class="twt-wrapper">
+  <div class="col-md-3"></div>
+  <div class="col-md-6" style="margin-top: 50px">
+    <div class="panel panel-info" style="border-color:lightsalmon">
+      <div class="panel-heading" style="background-color:darkslategray;color:floralwhite;border-color:lightsalmon;text-align: center" >
+        <big>Please enter your username</big>
+      </div>
+      <div class="panel-body">
+        <form style="height: 70px; text-align: center;" action="/adduser">
+          Username:
+          <input type="text" name="addUserName" style="margin-top: 15px"/>
+          <button type="submit" class="btn btn-primary" style="background-color:lightsalmon;border-color: lightsalmon"> Log in </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

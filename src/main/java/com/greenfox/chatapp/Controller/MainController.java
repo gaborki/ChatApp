@@ -21,7 +21,7 @@ public class MainController {
 
   private final static String CHAT_APP_LOGLEVEL = "INFO";
   private static String CHAT_APP_UNIQUE_ID = "gaborki";
-  private static String CHAT_APP_PEER_ADDRESS = "https://fackingawesomechatapp.herokuapp.com/api/message/receive";
+  private static String CHAT_APP_PEER_ADDRESS = "https://nokecskes-p2p.herokuapp.com/api/message/receive";
 
   public static void setChatAppUniqueId(String chatAppUniqueId) {
     CHAT_APP_UNIQUE_ID = chatAppUniqueId;
@@ -58,13 +58,13 @@ public class MainController {
 
   @RequestMapping(value = "/")
   public String indexPage(Model model) {
-    System.out.println(messageRepo.findAll());
+    System.out.println(messageRepo.findAllByOrderByTimestampDesc());
     if (appUser.getUsername() == null) {
       logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
       return "redirect:/register";
     } else {
       model.addAttribute(appUser);
-      model.addAttribute("messageList", messageRepo.findAll());
+      model.addAttribute("messageList", messageRepo.findAllByOrderByTimestampDesc());
       logRepo.save(new Log("/", "/GET", CHAT_APP_LOGLEVEL, "no parameter"));
       return "index2";
     }
@@ -98,6 +98,12 @@ public class MainController {
     jsonMessage.setMessage(new Message(CHAT_APP_UNIQUE_ID, mes));
     jsonMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
     restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
+    return "redirect:/";
+  }
+
+  @GetMapping("/deletemessages")
+  public String deleteMessages(){
+    messageRepo.deleteAll();
     return "redirect:/";
   }
 }
