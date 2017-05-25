@@ -5,6 +5,7 @@ import com.greenfox.chatapp.Module.Client;
 import com.greenfox.chatapp.Module.JsonMessage;
 import com.greenfox.chatapp.Module.Log;
 import com.greenfox.chatapp.Module.Message;
+import com.greenfox.chatapp.Module.StatusOk;
 import com.greenfox.chatapp.Repository.LogRepo;
 import com.greenfox.chatapp.Repository.MessageRepo;
 import com.greenfox.chatapp.Repository.UserRepo;
@@ -97,7 +98,7 @@ public class MainController {
     messageRepo.save(messageToSend);
     jsonMessage.setMessage(new Message(CHAT_APP_UNIQUE_ID, mes));
     jsonMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
-    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
+    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, StatusOk.class);
     return "redirect:/";
   }
 

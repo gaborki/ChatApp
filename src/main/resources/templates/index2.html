@@ -32,17 +32,17 @@
       <br />
         <button class="btn btn-primary btn-sm pull-right" style="background-color:lightsalmon;border-color:lightsalmon">Send</button>
       </form>
-      <div class="clearfix"></div>
+      <div class="clearfix" style="max-height: 300px"></div>
       <hr />
       <ul class="media-list">
-        <li class="media" style="background-color: seashell" th:each="m : ${messageList}">
+        <li class="media-control" style="background-color: seashell; border: solid; border-width: 1px; border-color: lightsalmon; border-radius: 10px; margin-bottom: 5px" th:each="m : ${messageList}">
           <div class="media-body">
             <big><strong class="text-success" style="margin: 5px" th:text="${m.getText()}"></strong></big>
             <div><small class="text-success" style="margin: 5px" th:text="|sent by: ${m.getUsername()} at ${m.getTimestamp()}"/></div>
           </div>
         </li>
       </ul>
-      <span class="text-danger">28.4M users active</span>
+      <span class="text-danger">created by gaborki</span>
     </div>
   </div>
 </div>
