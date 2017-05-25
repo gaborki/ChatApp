@@ -89,7 +89,7 @@ public class MainController {
     messageRepo.save(messageToSend);
     jsonMessage.setMessage(new Message(CHAT_APP_UNIQUE_ID, mes));
     jsonMessage.setClient(new Client(CHAT_APP_UNIQUE_ID));
-//    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
+    restTemplate.postForObject(CHAT_APP_PEER_ADDRESS, jsonMessage, JsonMessage.class);
     return "redirect:/";
   }
 }
